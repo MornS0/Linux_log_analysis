@@ -1,0 +1,53 @@
+{% extends 'admin_base.html' %}
+{% load replace_filter %}
+{% block title %}
+<title>log page</title>
+{% endblock %}
+{%block head%}
+<center>
+    <h1>服务器今日异常处理记录</h1>
+</center>
+{%endblock%}
+{% block main %}
+<table class="table" align="center" border="1" style="border-collapse: collapse;">
+    <hr>
+    <tr>
+        <td width="150px" height="30px" align="center">操作日期</td>
+        <td width="150px" height="30px" align="center">IP地址</td>
+        <td width="150px" height="30px" align="center">地理位置</td>
+        <td width="150px" height="30px" align="center">错误认证次数</td>
+        <td width="150px" height="30px" align="center">封禁情况</td>
+        <td width="70px" height="30px" align="center">操作</td>
+        <td width="70px" height="30px" align="center">操作结果</td>
+    </tr>
+    {% if today_ban_len != 0 %}
+    {% for i in today_ban %}
+    <tr id="{{forloop.counter0}}">
+        <td width="150px" height="30px" align="center">{{i.0}}</td>
+        <td class="ip" width="150px" height="30px" align="center">{{i.1}}</td>
+        <td class="location" width="150px" height="30px" align="center">
+            <button onclick="getLocation('{{forloop.counter0}}')">查询</button>
+        </td>
+        <td width="150px" height="30px" align="center">{{i.2}}</td>
+        <td class='ban' width="150px" height="30px" align="center">已封禁</td>
+        <td width="70px" height="30px" align="center">
+            <button class="banBtn" onclick="sendCmd('{{server_name}}', '{{forloop.counter0}}')">解封</button>
+        </td>
+        <td align="center">
+            <font class="msg">无</font>
+        </td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <tr rowspan="5" align="center" height="150px">
+        <td colspan="7" align="center" height="150px" style="font-size: 30px">数据为空</td>
+    </tr>
+    {% endif %}
+    <tbody id="trAdd">
+    </tbody>
+</table>
+<hr>
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/static/js/log.js"></script>
+{% endblock %}

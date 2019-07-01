@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>forget page</title>
+{% endblock %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/static/css/regist.css">
+{% endblock %}
+{% block main %}
+<center>
+    <h1>密码找回验证</h1>
+    <hr>
+</center>
+<form action="/forget_deal/" method="post">
+    <table align="center" border="0">
+        <tr>
+            <td height="30px" width="120px"><label for="name">用户名：</label></td>
+            <td height="30px" width="180px"><input type="text" name="name" id="name"></td>
+        </tr>
+        <tr>
+            <td height="30px" width="120px"><label for="email">邮箱：</label></td>
+            <td height="30px" width="180px"><input type="text" name="email" id="email"></td>
+        </tr>
+        <tr>
+            <td width="120px" height="30px"><label for="password">新密码：</label></td>
+            <td width="180px" height="30px"><input type="password" name="password" id="password"></td>
+        </tr>
+        <tr>
+            <td width="120px" height="30px"><label for="password2">再次输入密码：</label></td>
+            <td width="180px" height="30px"><input type="password" name="password2" id="password2"></td>
+            <td width="180px" height="30px">
+                <font color="red" id="judgePwd" class="judge">两次输入密码不一致</font>
+            </td>
+        </tr>
+        <tr>
+            <td height="30px" width="120px"><label for="code">验证码：</label></td>
+            <td height="30px" width="180px"><input type="text" name="code" id="code"></td>
+            <td align="left"><img class="code" src="/static/img/code.png" width="180px"></td>
+        </tr>
+        <tr>
+            <td height="30px" align="right"><input type="submit" value="提交"></td>
+            <td height="30px" align="center"><input type="reset" value="重置"></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/static/js/forget.js"></script>
+<script type="text/javascript" src="/static/js/get_code.js"></script>
+{% endblock %}

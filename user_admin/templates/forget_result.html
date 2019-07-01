@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>{{status}}</title>
+{% endblock %}
+{% block main %}
+<center>
+    <h1>密码找回验证结果</h1>
+    <hr>
+</center>
+<center>
+    <h1>{{status}}！</h1>
+    {%if code == 1%}
+    <a class="jump" href="/login">将前往登录页面，若未自动跳转，请点击此处</a>
+    {%elif code == 0%}
+    <a class="jump" href="/forget">将返回验证页面重新验证，若未自动跳转，请点击此处</a>
+    {%endif%}
+</center>
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/static/js/result.js"></script>
+{% endblock %}

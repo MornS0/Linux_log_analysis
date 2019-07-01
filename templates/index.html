@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>index page</title>
+{% endblock %}
+{% block main %}
+<center>
+    <h1>首页</h1>
+    <hr>
+</center>
+<table align="center">
+    <tr>
+        <td width="400px" align="center"><a href="/admin/show"><img src="/static/img/firefox.png" height="200px"></a></td>
+        <td width="400px" align="center"><a href="/admin/control"><img src="/static/img/gmail.png" height="200px"></a></td>
+        <td width="400px" align="center"><a href="/admin/add"><img src="/static/img/rss.png" height="200px"></a></td>
+    </tr>
+    <tr>
+        <td width="400px" align="center"><a style="font-size: 25px;" href="/admin/show">服务器概况</a></td>
+        <td width="400px" align="center"><a style="font-size: 25px;" href="/admin/control">管理控制台</a></td>
+        <td width="400px" align="center"><a style="font-size: 25px;" href="/admin/add">添加服务器</a></td>
+    </tr>
+</table>
+{% endblock %}
+{% block script %}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>admin page</title>
+{% endblock %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/static/css/add.css">
+{% endblock %}
+{% block main %}
+<center>
+    <h1>用户信息</h1>
+    <hr>
+</center>
+<table align="center" border="0">
+    <tr>
+        <td width="120px"></td>
+        <td width="120px" height="30px">用户名：</td>
+        <td width="120px" height="30px">{{ name }}</td>
+    </tr>
+    <tr>
+        <td width="120px"></td>
+        <td width="120px" height="30px">邮箱：</td>
+        <td width="260px" height="30px">{{ email }}</td>
+    </tr>
+    <tr>
+        <td width="120px"></td>
+        <td width="120px" height="30px">所属机构：</td>
+        <td width="260px" height="30px">{{ company }}</td>
+    </tr>
+    <tr>
+        <td width="120px"></td>
+        <td width="120px" height="30px">注册时间：</td>
+        <td width="260px" height="30px">{{ date }}</td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" height="30px"><a href="/admin/change">编辑信息</a></td>
+    </tr>
+</table>
+{% endblock %}
+{% block script %}
+{% endblock %}

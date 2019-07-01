@@ -1,0 +1,53 @@
+{% extends 'admin_base.html' %}
+{% load replace_filter %}
+{% block title %}
+<title>record page</title>
+{% endblock %}
+{%block head%}
+<center>
+    <h1>服务器登录记录</h1>
+</center>
+{%endblock%}
+{% block main %}
+<table class="table" align="center" border="1" style="border-collapse: collapse;">
+    <hr>
+    <tr>
+        <td width="150px" height="30px" align="center">登录日期</td>
+        <td width="150px" height="30px" align="center">登录时间</td>
+        <td width="150px" height="30px" align="center">登出时间</td>
+        <td width="150px" height="30px" align="center">使用时间</td>
+        <td width="150px" height="30px" align="center">用户名</td>
+        <td width="150px" height="30px" align="center">IP地址</td>
+        <td width="150px" height="30px" align="center">地理位置</td>
+        <td width="150px" height="30px" align="center">端口</td>
+        <td width="150px" height="30px" align="center">登录类型</td>
+    </tr>
+    {% if record_len != 0 %}
+    {% for i in record %}
+    <tr id="{{forloop.counter0}}">
+        <td width="150px" height="30px" align="center">{{i.0}}</td>
+        <td width="150px" height="30px" align="center">{{i.1}}</td>
+        <td width="150px" height="30px" align="center">{{i.2}}</td>
+        <td width="150px" height="30px" align="center">{{i.3}}</td>
+        <td width="150px" height="30px" align="center">{{i.4}}</td>
+        <td class="ip" width="150px" height="30px" align="center">{{i.5}}</td>
+        <td class="location" class="location" width="150px" height="30px" align="center">
+            <button onclick="getLocation('{{forloop.counter0}}')">查询</button>
+        </td>
+        <td width="150px" height="30px" align="center">{{i.6}}</td>
+        <td width="150px" height="30px" align="center">{{i.7}}</td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <tr rowspan="5" align="center" height="150px">
+        <td colspan="9" align="center" height="150px" style="font-size: 30px">数据为空</td>
+    </tr>
+    {% endif %}
+    <tbody id="trAdd">
+    </tbody>
+</table>
+<hr>
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/static/js/record.js"></script>
+{% endblock %}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% block title %}
+    {% endblock %}
+</head>
+<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+{% block style %}
+{% endblock %}
+{% block style2 %}
+{% endblock %}
+<body>
+    <div class="headline">
+        <center><span class="title">Linux日志分析系统</span></center>
+    </div>
+    <div class="head" align="right">
+        <a href="/index/">&nbsp;首页&nbsp;</a>
+        <a href="/instr/">&nbsp;使用说明&nbsp;</a>
+        {% if status == 0 %}
+        <a href="/login">&nbsp;登录&nbsp;</a>
+        <a href="/regist">&nbsp;注册&nbsp;</a>
+        {% elif status == 1 %}
+        <span class="user"><a href="/admin/">&nbsp;欢迎,{{name}}&nbsp;&nbsp;</a></span>
+        <div class="userInfo">
+            <div><a href="/admin/">管理员信息</a></div>
+            <div><a href="/admin/show">服务器概况</a></div>
+            <div><a href="/admin/control">管理控制台</a></div>
+            <div><a href="/logout">&nbsp;注销&nbsp;</a></div>
+        </div>
+        {% endif %}
+    </div>
+    <div control="{{nav_control}}" class="nav">
+        <div></div>
+        <div></div>
+        <div style="text-align: center; font-size: 25px; color: white; height: 50px;">导航条</div>
+        <div></div>
+        <div><a href="/">首页</a></div>
+        <div><a href="/admin/">管理员信息</a></div>
+        <div><a href="/admin/add">添加服务器</a></div>
+        <div><a href="/admin/show">服务器概况</a></div>
+        <div><a href="/admin/control">管理控制台</a></div>
+        <div></div>
+        <div></div>
+        <div><a href="/login/">{% if status == 1 %}切换账号{% else %}登录账号{% endif %}</a></div>
+        <div><a href="/logout/">注销账号</a></div>
+        <div><a href="/regist/">注册账号</a></div>
+        <div><a href="/instr/">使用说明</a></div>
+    </div>
+    <div class="navControl" onclick="moveFun()"><br>隐<br>藏</div>
+    {% block head %}
+    {% endblock %}
+    {% block index %}
+    {% endblock %}
+    {% block main %}
+    {% endblock %}
+</body>
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/base.js"></script>
+<script type="text/javascript" src="/static/js/md5.js"></script>
+{% block script_base %}
+{% endblock %}
+{% block script %}
+{% endblock %}
+</html>

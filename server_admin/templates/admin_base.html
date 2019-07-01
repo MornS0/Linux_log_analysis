@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+{% endblock %}
+
+{% block index %}
+<center>
+    <table align="center">
+        <tr class="td_title">
+            <td width="130px" height="30px" align="center">服务器：<span style="color: black; opacity: 1;" class="name" user="{{server_user}}">{{ server_name }}</span></td>
+            <td id="control" width="130px" height="30px" align="center">
+                <a style="display:block;" href="/admin/control/">总控制台</a>
+            </td>
+            <td id="record" width="130px" height="30px" align="center">
+                <a style="display:block;" href="/admin/record/?server_name={{server_name}}">登录记录</a>
+            </td>
+            <td id="log" width="130px" height="30px" align="center">
+                <a style="display:block;" href="/admin/log/?server_name={{server_name}}">异常记录</a>
+            </td>
+            <td id="log" width="130px" height="30px" align="center">
+                <a style="display:block;" href="/admin/today_ban/?server_name={{server_name}}">异常处理记录</a>
+            </td>
+            <td id="log_ban" width="130px" height="30px" align="center">
+                <a style="display:block;" href="/admin/log_ban/?server_name={{server_name}}">IP封禁名单</a>
+            </td>
+            <td id="view" width="130px" height="30px" align="center">
+                <a style="display:block;" href="/admin/view/?server_name={{server_name}}">日志分析结果</a>
+            </td>
+            <td id="command" width="130px" height="30px" align="center">
+                <a style="display:block;" href="/admin/command/?server_name={{server_name}}&cmd_type=single">命令控制台</a>
+            </td>
+            <td id="download" width="550px" height="30px" align="center">
+                下载(<a href="/admin/download/?server_name={{server_name}}&file_name=record.csv">登录记录</a>/
+                <a href="/admin/download/?server_name={{server_name}}&file_name=abnormal.csv">异常记录</a>/
+                <a href="/admin/download/?server_name={{server_name}}&file_name=today_ban.csv">异常处理</a>/
+                <a href="/admin/download/?server_name={{server_name}}&file_name=ban.csv">封禁名单</a>/
+                <a href="/admin/download/?server_name={{server_name}}&file_name=result.csv">登陆用时</a>/
+                <a href="/admin/download/?server_name={{server_name}}&file_name=visual_geo.csv">登陆地区分布</a>)
+            </td>
+        </tr>
+    </table>
+</center>
+{% endblock %}
+
+{% block script_base %}
+<script type="text/javascript" src="/static/js/index.js"></script>
+{% endblock %}

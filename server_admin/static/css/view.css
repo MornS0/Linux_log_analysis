@@ -1,0 +1,8 @@
+.geo a{
+	color: #FFFFFF;
+	opacity: 0.7;
+}
+
+.geo a:hover {
+	opacity: 0.5;
+}

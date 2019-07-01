@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>index page</title>
+{% endblock %}
+{% block main %}
+<center>
+    <h1>Linux日志分析系统使用说明</h1>
+    <hr>
+    <table style="font-size: 20px;" align="center">
+    	<tr align="left">
+    		<td width="900px"><h3>本平台致力于Linux日志分析，主要功能介绍如下：</h3></td>
+    	</tr>
+    	<tr align="left">
+    		<td width="900px"><li>1.添加服务器：管理员可以同时添加和管理多台服务器</li></td>
+    	</tr>
+    	<tr align="left">
+    		<td width="900px"><li>2.服务器概况：管理员可以查看所有添加的服务器概况信息，并可进入服务器分析结果页面查看</li></td>
+    	</tr>
+    	<tr align="left">
+    		<td width="900px"><li>3.管理控制台：对于添加的服务器，管理员可在此查看详细信息，并对服务器信息进行修改和删除操作，以及测试服务器可否连接，当连接有效，则可进行日志信息更新的一系列操作，同时也可进入服务器登录记录/异常记录/封禁名单/日志分析结果查看信息，以及进入命令行控制台对服务器进行远程操作</li></td>
+    	</tr>
+        <tr align="left">
+            <td width="900px"><li>注：当服务器状态为可连接时，可开启自动更新数据。对于所有开启自动更新的服务器，本平台将会定时对其日志数据进行更新，并对当日出现的异常行为进行处理</li></td>
+        </tr>
+    	<tr align="left">
+    		<td><hr></td>
+    	</tr>
+    	<tr align="left">
+    		<td width="900px"><h3>对于单个服务器，主要提供以下日志分析结果：</h3></td>
+    	</tr>
+    	<tr align="left">
+    		<td width="900px"><li>1.登录记录：可以查看服务器至今的所有登录信息，包括：登录日期、登录时间、登出时间、使用时间、用户名、IP地址、地理位置、端口和登录类型（密码/密钥登录）</li></td>
+    	</tr>
+    	<tr align="left">
+    		<td width="900px"><li>2.异常记录：可以查看服务器进行的所有远程连接错误验证信息，包括：操作日期、IP地址、地理位置、错误认证次数和封禁情况</li></td>
+    	</tr>
+        <tr align="left">
+            <td width="900px"><li>3.异常处理：对于服务器当日远程连接错误验证次数超过五次的IP自动进行封禁操作后的记录情况，包括：操作日期、IP地址、地理位置、错误认证次数和封禁情况</li></td>
+        </tr>
+    	<tr align="left">
+    		<td width="900px"><li>4.IP封禁名单：可以查看服务器所有当前封禁的IP名单，包括：IP地址和地理位置</li></td>
+    	</tr>
+    	<tr align="left">
+    		<td width="900px"><li>5.日志分析结果：对分析的数据整合后进行可视化展示，包括：服务器日登录次数（柱状图）、服务器日总使用时间（折线图）和服务器登录IP地理位置分布图（地理图）</li></td>
+    	</tr>
+    	<tr align="left">
+    		<td width="900px"><li>6.对于以上的分析结果数据均提供下载</li></td>
+    	</tr>
+        <tr align="left">
+            <td><hr></td>
+        </tr>
+        <tr align="left">
+            <td width="900px"><h3>对于单个服务器，主要提供以下操作功能：</h3></td>
+        </tr>
+        <tr align="left">
+            <td width="900px"><li>1.命令行远程操作：在命令控制台界面将会与服务器进行远程连接，并提供管理员命令执行操作，其中命令行模式分为单命令模式和交互模式：单命令模式下将不保存之前命令的执行结果；交互模式将保存之前的命令执行结果</li></td>
+        </tr>
+        <tr align="left">
+            <td width="900px"><li>2.异常记录：IP封禁/解封操作：在异常记录和IP封禁名单当中可以进行IP封禁和解封操作，其中被封禁的IP将无法再与该服务器进行远程SSH连接</li></td>
+        </tr>
+    	<tr align="left">
+    		<td><hr></td>
+    	</tr>
+    	<tr align="left">
+    		<td width="900px"><h3>详细使用步骤如下图所示：</h3></td>
+    	</tr>
+
+    </table>
+	
+    <img src="/static/img/instruction.png">
+</center>
+
+{% endblock %}
+{% block script %}
+{% endblock %}

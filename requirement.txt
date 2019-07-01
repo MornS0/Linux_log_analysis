@@ -1,0 +1,7 @@
+pip install django==2.0.5
+pip install pymysql
+pip install paramiko
+pip install pillow
+pip install requests
+pip install apscheduler==2.1.2
+pip install pyecharts

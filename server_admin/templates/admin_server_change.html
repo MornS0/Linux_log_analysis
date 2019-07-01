@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>server change page</title>
+{% endblock %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/static/css/add.css">
+{% endblock %}
+{% block main %}
+<center>
+    <h1>修改服务器信息</h1>
+    <hr>
+</center>
+<form action="/admin/server_change_deal/" method="post">
+    <table align="center" border="0">
+        <tr>
+            <td width="150px"></td>
+            <td width="150px" height="30px"><label for="ip">ip：</label></td>
+            <td width="150px" height="30px"><input type="text" name="ip" id="ip" value="{{ip}}"></td>
+            <td width="150px" height="30px">
+                <font color="red" id="judgeIp" class="judge">IP地址格式有误</font>
+            </td>
+        </tr>
+        <tr>
+            <td width="150px"></td>
+            <td width="150px" height="30px"><label for="port">port（可选）：</label></td>
+            <td width="150px" height="30px"><input type="text" name="port" id="port" value="{{port}}"></td>
+            <td width="150px" height="30px">
+                <font color="red" id="judgePort" class="judge">请输入正确端口号</font>
+            </td>
+        </tr>
+        <tr>
+            <td width="150px"></td>
+            <td width="150px" height="30px"><label for="user">用户名：</label></td>
+            <td width="150px" height="30px"><input type="text" name="user" id="user" value="{{user}}"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td width="150px"></td>
+            <td width="150px" height="30px"><label for="password">密码：</label></td>
+            <td width="150px" height="30px"><input type="password" name="password" id="password"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td width="150px"></td>
+            <td width="150px" height="30px"><label for="password2">再次输入密码：</label></td>
+            <td width="150px" height="30px"><input type="password" name="password2" id="password2"></td>
+            <td width="150px" height="30px">
+                <font color="red" id="judgePwd" class="judge">两次输入密码不一致</font>
+            </td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td width="150px"></td>
+            <td width="150px" height="30px"><input type="hidden" name="server_name" value="{{server_name}}"></td>
+            <td colspan="2">
+                <font color="red">{{msg | default:""}}</font>
+            </td>
+        </tr>
+        <tr>
+            <td width="150px"></td>
+            <td align="center"><input type="submit" value="提交"></td>
+            <td align="center"><input type="reset" value="重置"></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/static/js/server_change.js"></script>
+{% endblock %}

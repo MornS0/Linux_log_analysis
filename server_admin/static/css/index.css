@@ -1,0 +1,11 @@
+.td_title td{
+    background-color: rgba(140,67,51,0.5);
+}
+
+.td_title a{
+	color: #FFFFFF;
+}
+
+.td_title a:hover {
+	opacity: 0.5;
+}

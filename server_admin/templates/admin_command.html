@@ -1,0 +1,44 @@
+{% extends 'admin_base.html' %}
+{% block title %}
+<title>command page</title>
+{% endblock %}
+{%block head%}
+<center>
+    <h1>服务器命令行界面</h1>
+</center>
+{%endblock%}
+{% block main %}
+<div align="center">
+    <hr>
+        <table>
+        <tr>
+            <td width="180px" height="30px" align="center">
+                连接状态：<span class="connect">连接中...</span></td>
+            <td width="150px" height="30px" align="center">
+                端口号：<span>{{server_port}}</span>
+            </td>
+            <td width="180px" height="30px" align="center">
+                连接模式：<span class="type">{%if cmd_type == "single"%}单命令模式{%else%}交互模式{%endif%}</span>
+            </td>
+            <td width="100px" height="30px" align="center">
+                <a href="/admin/command/?server_name={{server_name}}&cmd_type={%if cmd_type == 'single'%}invoke{%else%}single{%endif%}">切换模式</a>
+            </td>
+            <td width="80px" height="30px" align="center">
+                <a href="/admin/command/?server_name={{server_name}}&cmd_type={{cmd_type}}">刷新</a>
+            </td>
+        </tr>
+    </table>
+    
+    <div class="get" style="background: grey; height: 500px; width: 800px; text-align: left; overflow-y: auto; " align="center" height="300px" width="500px">
+    </div>
+    <div>
+        输入命令：<input class="cmd" type="text">
+        <button class="send" onclick="sendCmd()">发送命令</button>
+        <button class="empty" onclick="emptyCmd()">清除</button>
+    </div>
+    <hr>
+</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/static/js/command.js"></script>
+{% endblock %}

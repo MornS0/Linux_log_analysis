@@ -1,0 +1,9 @@
+.server tr td{
+	/*color: #FFFFFF;*/
+}
+.server tr td:nth-child(1) {
+	background-color: rgba(140,67,51,0.3);
+}
+.server tr td:nth-child(2) {
+	background-color: rgba(140,67,51,0.1);
+}

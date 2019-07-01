@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>show page</title>
+{% endblock %}
+{% block main %}
+<center>
+    <h1>服务器概况</h1>
+    <h3>拥有服务器数量：{{ server_num }}</h3>
+    <hr>
+</center>
+{% for i in server.items %}
+<table align="center" border="0">
+    <tr>
+        <td width="120px" height="30px">服务器：</td>
+        <td width="120px" height="30px">
+            {{ i.0 }}</td>
+        <td align="left">
+            <a href="/admin/view/?server_name={{i.0}}">详细信息</a>
+        </td>
+    </tr>
+    <tr>
+        <td width="120px" height="30px">IP地址：</td>
+        <td width="260px" height="30px">{{ i.1.server_ip }}</td>
+    </tr>
+    <tr>
+        <td width="120px" height="30px">用户名：</td>
+        <td width="260px" height="30px">{{ i.1.server_user }}</td>
+    </tr>
+    <tr>
+        <td width="120px" height="30px">系统类型：</td>
+        <td width="260px" height="30px">{{ i.1.server_os }}</td>
+    </tr>
+</table>
+<hr>
+{% endfor %}
+<center>
+    <a href="/admin/add/">点此添加更多服务器...</a>
+</center>
+{% endblock %}
+{% block script %}
+{% endblock %}

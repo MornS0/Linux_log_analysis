@@ -1,0 +1,36 @@
+{% extends 'admin_base.html' %}
+{% block title %}
+<title>view page</title>
+{% endblock %}
+{%block head%}
+<center>
+    <h1>地理图展示</h1>
+</center>
+{%endblock%}
+{% block main %}
+<table width="100%" height="800px"  border="0" cellspacing="0" cellpadding="0" align="center" border="0" style="border-collapse:collapse; ">
+    <hr>
+    <tr width="100%">
+        <td >
+            <div align="center" style="color: white; font-size: 25px; background-color: rgba(140,67,51,0.5); ">登录地区分布：</div>
+        </td>
+    </tr>
+    <tr width="100%" height="100%">
+        <td align="center">
+                <div style="height: 100%; width: 100%" id="container" class="container">
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><img align="center" src="/static/img/loading.gif" height="200px">
+                </div>
+        </td>
+    </tr>
+    <tr height="10px">
+        <td colspan="4" style="background-color: rgba(140,67,51,0.5); font-size: 20px; color: white; " align="center">（已过滤局域网IP）</td>
+    </tr>
+</table>
+<br><br>
+{% endblock %}
+{% block script %}
+<script src="//webapi.amap.com/loca?v=1.2.0&key=646c9ba74ac5ae6e3336a26fe29bdf2b"></script>
+<script src="//a.amap.com/Loca/static/manual/example/script/demo.js"></script>
+<script src="//a.amap.com/Loca/static/mock/districts.js"></script>
+<script type="text/javascript" src="/static/js/geo.js"></script>
+{% endblock %}

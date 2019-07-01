@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load replace_filter %}
+{% block title %}
+<title>control page</title>
+{% endblock %}
+{% block style2 %}
+<link rel="stylesheet" type="text/css" href="/static/css/control.css">
+{% endblock %}
+{% block main %}
+<center>
+    <h1>服务器总控制台</h1>
+    <h3>拥有服务器数量：{{ server_num }}</h3>
+    <hr>
+</center>
+{% for i in server.items %}
+<table class="server" align="center" border="1" style="border-collapse: collapse;">
+    <tr>
+        <td align="center" width="150px" height="30px">远程机器名称：</td>
+        <td width="250px" height="30px">&nbsp;&nbsp;{{ i.0 }}(<a href="/admin/delete/?server_name={{i.0}}">删除</a>)</td>
+    </tr>
+    <tr>
+        <td align="center" width="150px" height="30px">机器 I P 地址：</td>
+        <td width="250px" height="30px">&nbsp;&nbsp;{{ i.1.server_ip }}</td>
+    </tr>
+    <tr>
+        <td align="center" width="150px" height="30px">机器端口号码：</td>
+        <td width="250px" height="30px">&nbsp;&nbsp;{{ i.1.server_port }}</td>
+    </tr>
+    <tr>
+        <td align="center" width="150px" height="30px">机器登录用户：</td>
+        <td width="250px" height="30px">&nbsp;&nbsp;{{ i.1.server_user }}</td>
+    </tr>
+    <tr>
+        <td align="center" width="150px" height="30px">机器系统类型：</td>
+        <td width="250px" height="30px">&nbsp;&nbsp;{{ i.1.server_os }}</td>
+    </tr>
+    <tr>
+        <td align="center" width="150px" height="30px">可否连接状态：</td>
+        <td class="connect" width="250px" height="30px">&nbsp;
+        {% if i.1.server_status == 1 %}<img style="vertical-align: middle;" src="/static/img/c11.png" height="20px">
+        {% else %}<img style="vertical-align: middle;" src="/static/img/9.png" height="20px">
+        {% endif %}
+        &nbsp;<button onclick="connectTestFun({{forloop.counter0}}, '{{i.0}}')">测试连接</button>
+    </td>
+    </tr>
+    <tr>
+        <td align="center" width="150px" height="30px">自动更新数据：</td>
+        <td width="250px" height="30px">&nbsp;
+            {% if i.1.server_auto == 1 %}
+            <span class="switch_result"><img style="vertical-align: middle;" src="/static/img/c11.png" height="20px"></span>
+            &nbsp;<button class="switch" onclick="switchFun({{forloop.counter0}}, '{{i.0}}')">关闭</button>
+            {% elif i.1.server_status == 1 %}
+            <span class="switch_result"><img style="vertical-align: middle;" src="/static/img/9.png" height="20px"></span>
+            &nbsp;<button class="switch" onclick="switchFun({{forloop.counter0}}, '{{i.0}}')">打开</button>
+            {% else %}
+            <span class="switch_result"><img style="vertical-align: middle;" src="/static/img/9.png" height="20px"></span>
+            &nbsp;<button class="switch" disabled="disabled" onclick="switchFun({{forloop.counter0}}, '{{i.0}}')">打开</button>
+            <font color="gray">（请先检查可否连接）</font>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="150px" height="30px">最近更新时间：</td>
+        <td width="250px" height="30px">&nbsp;
+            {{ i.1.server_update_time | rep:'<img style="vertical-align: middle;" src="/static/img/18.png" height="20px">' }}
+            <span class="upgrade">
+                {% if i.1.server_status == 1 %}
+                &nbsp;<button onclick="upgradeFun({{forloop.counter0}}, '{{i.0}}')">更新</button>
+                {% else %}
+               &nbsp;<button disabled="disabled" onclick="upgradeFun({{forloop.counter0}}, '{{i.0}}')">更新</button>
+                <font color="gray">（请先检查可否连接）</font>
+                {% endif %}
+            </span>
+    </tr>
+    <tr>
+        <td align="center" width="150px" height="30px">日志文件上传：</td>
+        <td width="250px" height="30px">
+            <form action="/admin/receive/upload_get/" method="post" enctype="multipart/form-data">
+                &nbsp;&nbsp;<input type="hidden" name="server_name" value="{{i.0}}">
+                <input type="file" style="width: 150px" name="file">
+                <input type="submit" value="上传">
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="150px" height="30px">日志记录信息：</td>
+        <td width="250px" height="30px">&nbsp;&nbsp;
+            {% if i.1.server_update_time != "None" %}(<a href="/admin/record/?server_name={{i.0}}">登录记录</a>/<a href="/admin/log/?server_name={{i.0}}">异常记录</a>/<a href="/admin/log_ban/?server_name={{i.0}}">封禁名单</a>)
+            {% else %}<img style="vertical-align: middle;" src="/static/img/18.png" height="20px">
+            {% endif %}
+
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="150px" height="30px">已初始化情况：</td>
+        <td width="250px" height="30px">&nbsp;
+            {% if i.1.server_update_time != "None" %}<img style="vertical-align: middle;" src="/static/img/c11.png" height="20px">&nbsp;(<a href="/admin/view/?server_name={{i.0}}">日志分析结果</a>/<a href="/admin/today_ban/?server_name={{i.0}}">今日异常处理</a>)
+            {% else %}<img style="vertical-align: middle;" src="/static/img/18.png" height="20px">
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="150px" height="30px">其他更多选择：</td>
+        <td width="250px" height="30px">&nbsp;&nbsp;
+            (<a href="/admin/command/?server_name={{i.0}}&cmd_type=single">进入控制台</a>/
+            <a href="/admin/server_change/?server_name={{i.0}}">修改信息</a>)
+        </td>
+    </tr>
+</table>
+<hr>
+{% endfor %}
+<center>
+    <a href="/admin/add/">点此添加更多服务器...</a>
+</center>
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/static/js/control.js"></script>
+{% endblock %}

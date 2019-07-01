@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>{{status}}</title>
+{% endblock %}
+{% block main %}
+<center>
+    <h1>日志文件上传结果</h1>
+    <hr>
+    <h1>{{status}}！</h1>
+    {%if code == 1%}
+    <a class="jump" href="/admin/control">上传成功，正在分析中...将返回服务器控制台页面，若未自动跳转，请点击此处</a>
+    {%elif code == 0%}
+    <h2>错误原因：{{msg}}</h2>
+    <a class="jump" href="/admin/control">上传失败，将返回服务器控制台页面，若未自动跳转，请点击此处</a>
+    {%endif%}
+</center>
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/static/js/result.js"></script>
+{% endblock %}
