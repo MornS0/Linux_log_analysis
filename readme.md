@@ -93,6 +93,7 @@ def show_config(self):
     #把数据格式化后返回
     return result
 ```
+再在该文件的开头导入模块中将`from pprint import pprint`改为：`from pprint import pprint, pformat`
 
 4.安装mysql（要求5.6以上版本）log_analysis/settings.py下配置数据库信息：
 ```
